@@ -2,63 +2,89 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>QR Code Generator - Mohamed Khalid</title>
+  <title>MK QR Code — v2</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Google Font (Optional) -->
+  <!-- Font -->
   <link rel="preconnect" href="https://fonts.gstatic.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
-  <!-- Your CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <!-- Styles -->
   <link rel="stylesheet" href="style.css" />
+  <!-- Favicon -->
+<link rel="icon" href="./favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0b1220">
+
 </head>
 <body>
-  <header>
-    <h1>QR Code Generator</h1>
-    <p>Create and Download Custom QR Codes</p>
+  <header class="site-header">
+    <div class="brand">
+      <span class="logo">MK</span>
+      <h1>QR Code Generator <span class="muted">v2</span></h1>
+    </div>
+    <p class="tagline">Create, preview, and download crisp QR codes.</p>
   </header>
 
-  <main>
-    <section class="qr-section">
-      <form id="qrForm" class="qr-form">
-        <div class="form-group">
-          <label for="qrInput">Enter or Paste Your URL:</label>
-          <input
-            type="url"
-            id="qrInput"
-            name="qrInput"
-            placeholder="https://example.com"
-            required
-          />
-        </div>
+  <main class="container">
+    <section class="card">
+      <form id="qrForm" class="grid">
+        <!-- URL -->
+        <label class="field span-2">
+          <span class="label">URL</span>
+          <input type="url" id="qrInput" placeholder="https://example.com" required />
+        </label>
 
-        <div class="form-group colors">
-          <div>
-            <label for="darkColor">Foreground Color:</label>
-            <input type="color" id="darkColor" value="#000000" />
-          </div>
-          <div>
-            <label for="lightColor">Background Color:</label>
-            <input type="color" id="lightColor" value="#ffffff" />
-          </div>
-        </div>
+        <!-- Colors -->
+        <label class="field">
+          <span class="label">Foreground</span>
+          <input type="color" id="darkColor" value="#000000" />
+        </label>
+        <label class="field">
+          <span class="label">Background</span>
+          <input type="color" id="lightColor" value="#ffffff" />
+        </label>
 
-        <button type="submit" id="generateBtn">Generate QR Code</button>
+        <!-- Size -->
+        <label class="field">
+          <span class="label">Size <small id="sizeVal">320 px</small></span>
+          <input type="range" id="size" min="128" max="768" step="8" value="320" />
+        </label>
+
+        <!-- Error Correction -->
+        <label class="field">
+          <span class="label">Error Correction</span>
+          <select id="ecLevel" aria-label="Error Correction Level">
+            <option value="H" selected>H (best)</option>
+            <option value="Q">Q</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+          </select>
+        </label>
+
+        <!-- Generate -->
+        <div class="actions span-2">
+          <button type="submit" id="generateBtn" class="btn primary">Generate</button>
+        </div>
       </form>
 
-      <!-- Display Area -->
-      <div class="qr-display" id="qrDisplay" aria-live="polite" role="img"></div>
+      <!-- Preview & Download -->
+      <div class="preview">
+        <div class="preview-title">Preview</div>
+        <div class="qr-wrap" id="qrDisplay" aria-live="polite" role="img" aria-label="QR code preview will appear here"></div>
 
-      <!-- Download Button -->
-      <button id="downloadBtn" class="download-btn" disabled>Download</button>
+        <div class="download-row">
+          <button id="downloadBtn" class="btn accent" disabled>Download</button>
+          <span class="hint" id="statusHint">Generate a code to enable download.</span>
+        </div>
+      </div>
     </section>
   </main>
 
-  <footer>
-    <p>&copy; 2025 MK'S Awesome QR Service</p>
+  <footer class="site-footer">
+    <p>© 2025 MK’s Awesome QR Service</p>
   </footer>
 
   <!-- QRCodeJS Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-  <!-- Your Script -->
+  <!-- App -->
   <script src="script.js"></script>
 </body>
 </html>
