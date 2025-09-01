@@ -56,11 +56,16 @@ html,body{
   border-radius:16px;
   padding:1.25rem;
   box-shadow:var(--shadow);
+
+  /* glass blur (with Safari prefix) */
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
+
   display:grid;
-  grid-template-columns: 1.1fr .9fr;
+  grid-template-columns: 1.1fr 0.9fr;   /* ← add the 0 before .9 */
   gap:1.25rem;
 }
+
 @media (max-width:900px){
   .card{grid-template-columns:1fr}
 }
